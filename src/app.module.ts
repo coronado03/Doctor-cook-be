@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/user.module';
+import { RecipesController } from './recipes/recipes.controller';
+import { RecipesService } from './recipes/recipes.service';
 
 @Module({
   imports: [
@@ -10,8 +13,10 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     DatabaseModule,
+    AuthModule,
+    UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [RecipesController],
+  providers: [RecipesService],
 })
 export class AppModule {}
